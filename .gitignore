@@ -1,3 +1,7 @@
 .polyscope.ini
 
 imgui.ini
+
+.venv
+
+**/__pychache__
