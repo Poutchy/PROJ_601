@@ -13,7 +13,7 @@ import numpy as np
 
 from recherche.wavefront import load_obj
 
-name='Mesh/bunnyhead'
+name='Mesh/dodecahedron_poly'
 obj_name=name+'.obj'
 obj = load_obj( obj_name )
 ps.init()
