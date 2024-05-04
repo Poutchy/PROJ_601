@@ -63,3 +63,13 @@ class Calculs:
                 case 2:
                     return Calculs.corrected_gaussian_curvature_density(args["T"])
         return Calculs.corrected_second_fundamental_form(args["X"], args["Y"])
+
+
+    @classmethod
+    def corrected_mean_curvature(V):
+        return Calculs.w(i = 1, T = V) / Calculs.w(i = 0, T = V)
+
+
+    @classmethod
+    def corrected_gaussian_curvature(V):
+        return Calculs.w(i = 2, T = V) / Calculs.w(i = 0, T = V)
