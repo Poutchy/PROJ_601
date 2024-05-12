@@ -27,7 +27,7 @@ def corrected_gaussian_curvature(V):
     return Calculs.w(i=2, T=V) / Calculs.w(i=0, T=V)
 
 
-def corrected_second_fundamental_form(T, X, Y):
+def corrected_second_fundamental_form(T: Triangle, X, Y):
     x = T.x
     u = T.u
     xi, xj, xk = x.i, x.j, x.k
@@ -54,15 +54,18 @@ def detX(u, v, w):
     c = cross(v, w)
     return dot(u, c)
 
+
 def u_(u):
     temp = (u.i + u.j + u.k)
     return 1/3 * temp
+
 
 def corrected_area_density(T):
     x = T.x
     u = T.u
     xi, xj, xk = x.i, x.j, x.k
     return 1/2 * detX(u_(u), (xj - xk), (xk - xi))
+
 
 def corrected_gaussian_curvature_density(T):
     u = T.u
@@ -72,7 +75,8 @@ def corrected_gaussian_curvature_density(T):
 
 if __name__ == "__main__":
     T = Triangle()
-    T.make_x(array([0.577350, -0.577350, 0.577350]), array([0.934172, -0.356822, 0.000000]), array([0.934172, 0.356822, 0.000000]))
+    T.make_x(array([0.577350, -0.577350, 0.577350]), array([0.934172, -
+             0.356822, 0.000000]), array([0.934172, 0.356822, 0.000000]))
     T.make_u(array([1, 1.5, 1]), array([1, 1.5, 1]), array([1, 1.5, 1]))
 
     print(T.x.i)
