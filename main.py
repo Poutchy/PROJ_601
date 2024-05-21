@@ -2,13 +2,19 @@ import polyscope as ps
 import numpy as np
 
 from recherche.wavefront import load_obj
+from recherche.objet import Objet
 
 
-name = 'Mesh/guy'
+name = 'Mesh/moebius'
 obj_name = name + '.obj'
 obj = load_obj(obj_name)
-print(obj.only_coordinates())
-print(obj.only_faces())
+
+test = Objet(obj)
+
+name = 'Mesh/moebius'
+obj_name = name + '.obj'
+obj = load_obj(obj_name)
+
 ps.init()
 ps_mesh = ps.register_surface_mesh(
     name, obj.only_coordinates(), obj.only_faces())
