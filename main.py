@@ -4,20 +4,19 @@ import numpy as np
 from recherche.wavefront import load_obj
 from recherche.objet import Objet
 
-
-name = 'Mesh/moebius'
+name = 'Mesh/triple_vierbein'
 obj_name = name + '.obj'
+
 obj = load_obj(obj_name)
 
-test = Objet(obj)
+n_obj = Objet(obj)
 
-name = 'Mesh/moebius'
-obj_name = name + '.obj'
-obj = load_obj(obj_name)
+
 
 ps.init()
 ps_mesh = ps.register_surface_mesh(
-    name, obj.only_coordinates(), obj.only_faces())
+    name, n_obj.only_coordinates(), n_obj.only_faces())
+ps_mesh.add_color_quantity("curvature colors", n_obj.list_color, defined_on='faces')
 bdry = obj.numpy_boundary_edges()
-ps_net = ps.register_curve_network("boundary", obj.only_coordinates(), bdry)
+ps_net = ps.register_curve_network("boundary", n_obj.only_coordinates(), bdry)
 ps.show()

@@ -1,4 +1,4 @@
-from numpy import cross, dot
+from numpy import cross, dot, add, array
 
 
 class Calculs:
@@ -20,9 +20,11 @@ class Calculs:
 
 
 def corrected_gaussian_curvature(V):
-    print("gaussian density", Calculs.w(i=2, T=V))
-    print("area density", Calculs.w(i=0, T=V))
-    return "corrected gaussian curvature", Calculs.w(i=2, T=V) / Calculs.w(i=0, T=V)
+    v1, v2, v3 = Calculs.w(i=2, T=V), Calculs.w(i=0, T=V), Calculs.w(i=2, T=V) / Calculs.w(i=0, T=V)
+    print("gaussian density", v1)
+    print("area density", v2)
+    print("corrected gaussian curvature", v3)
+    return array([v1, v2, v3])
 
 
 def corrected_second_fundamental_form(T, X, Y):
@@ -54,9 +56,8 @@ def detX(u, v, w):
 
 
 def u_(u):
-    print("u", u)
-    print("ui + uj", u[0] + u[1])
-    temp = (u[0] + u[1] + u[2])
+    u1, u2, u3 = array(u[0]), array(u[1]), array(u[2])
+    temp = add(u1, add(u2, u3))
     return 1/3 * temp
 
 
