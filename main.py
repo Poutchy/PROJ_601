@@ -16,7 +16,7 @@ n_obj = Objet(obj)
 ps.init()
 ps_mesh = ps.register_surface_mesh(
     name, n_obj.only_coordinates(), n_obj.only_faces())
-ps_mesh.add_color_quantity("curvature colors", n_obj.list_color, defined_on='faces')
+ps_mesh.add_scalar_quantity("curvature colors", n_obj.list_color, defined_on='faces')
 bdry = obj.numpy_boundary_edges()
 ps_net = ps.register_curve_network("boundary", n_obj.only_coordinates(), bdry)
 ps.show()

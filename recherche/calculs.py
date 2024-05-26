@@ -24,7 +24,7 @@ def corrected_gaussian_curvature(V):
     print("gaussian density", v1)
     print("area density", v2)
     print("corrected gaussian curvature", v3)
-    return array([v1, v2, v3])
+    return v3
 
 
 def corrected_second_fundamental_form(T, X, Y):

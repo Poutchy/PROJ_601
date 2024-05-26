@@ -21,7 +21,7 @@ class Objet():
         # print("nb faces", len(self.faces))
         # print("nb_points", len(self.usables_points))
 
-        self.list_color = zeros((len(self.faces), 3))
+        self.list_color = array(len(self.faces))
         for i in range (len(self.faces)):
             print("for face ", self.faces[i], "we know: ")
             self.list_color[i] = corrected_gaussian_curvature(self.faces[i])
