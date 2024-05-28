@@ -20,11 +20,41 @@ class Calculs:
 
 
 def corrected_gaussian_curvature(V):
-    v1, v2, v3 = Calculs.w(i=2, T=V), Calculs.w(i=0, T=V), Calculs.w(i=2, T=V) / Calculs.w(i=0, T=V)
-    print("gaussian density", v1)
-    print("area density", v2)
-    print("corrected gaussian curvature", v3)
+    v3 = Calculs.w(i=2, T=V) / Calculs.w(i=0, T=V)
+    # print("gaussian density", v1)
+    # print("area density", v2)
+    # print("corrected gaussian curvature", v3)
     return v3
+
+
+def prepare_triangle(V):
+    v1, v2 = Calculs.w(i=2, T=V), Calculs.w(
+        i=0, T=V)
+    # print("gaussian density", v1)
+    # print("area density", v2)
+    V.gaussian_density, V.area_density = v1, v2
+    # print("gaussian density", V.gaussian_density)
+    # print("area density", V.area_density)
+
+
+def corrected_gaussian_curvature_somme(V):
+    gaussian = []
+    area = []
+    for f in V.adjacent_faces:
+        gaussian.append(f.gaussian_density)
+        area.append(f.area_density)
+    gaussian.append(V.gaussian_density)
+    area.append(V.area_density)
+    # print("gaussian", gaussian)
+    # print("area", area)
+    return sum(gaussian) / sum(area)
+
+
+def calcul_intermédiare(V):
+    v1, v2 = Calculs.w(i=2, T=V), Calculs.w(i=0, T=V)
+    # print("gaussian density", v1)
+    # print("area density", v2)
+    return v1, v2
 
 
 def corrected_second_fundamental_form(T, X, Y):
