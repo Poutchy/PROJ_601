@@ -42,6 +42,8 @@ class Objet():
         self.only_faces()
 
     def set_faces(self):
+        """fonction qui permet la créations des faces de l'objet
+        """
         new_faces = []
         for face in self.faces:
             if len(face) == 3:
@@ -68,6 +70,11 @@ class Objet():
         self.faces = new_faces
 
     def only_coordinates(self):
+        """fonction qui extrait les coordonnées des points de l'objet
+
+        Returns:
+            list: la liste des points
+        """
         V = zeros((len(self.usables_points), 3), float64)
         for i in range(len(self.usables_points)):
             V[i][0] = self.usables_points[i].coordinates[0]
@@ -77,6 +84,11 @@ class Objet():
         return V
 
     def only_faces(self):
+        """fonction qui extrait les faces de l'objet
+
+        Returns:
+            list: la liste des faces
+        """
         all_faces = []
         for f in self.faces:
             face = []
@@ -86,6 +98,11 @@ class Objet():
         return all_faces
 
     def boundary_edges(self):
+        """fonction qui extrait les arêtes et les points de l'objet
+
+        Returns:
+            list: la liste des arêtes
+        """
         bdry_e = set()
         darts = {}
         faces = self.only_faces()
@@ -102,23 +119,17 @@ class Objet():
                     bdry_e.add((j, i))
         return bdry_e
 
-    def numpy_boundary_edges(self):
-        edges = self.boundary_edges()
-        np_edges = zeros((len(edges), 2), int32)
-        k = 0
-        for e in edges:
-            np_edges[k][0] = e[0]
-            np_edges[k][1] = e[1]
-            k = k+1
-        return np_edges
-
     def set_points(self):
+        """fonction qui permet la mise à jour des points de l'objet
+        """
         for face in self.faces:
             for id in face.ids:
                 self.usables_points[id].add_face(face)
         self.set_normals()
 
     def set_normals(self):
+        """fonction qui permet le calcul des normales des points de l'objet
+        """
         for point in self.usables_points:
             point.calculate_normal()
         for point in self.new_points:
@@ -133,6 +144,8 @@ class Objet():
             # print(f.u)
 
     def prepare_faces(self):
+        """fonction qui permet la mise à jour des faces de l'objet
+        """
         for f in self.faces:
             prepare_triangle(f)
             f.set_adjacent_faces()

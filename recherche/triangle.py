@@ -11,12 +11,18 @@ class Triangle():
         self.adjacent_faces = []
 
     def set_ids(self, l):
+        """fonction qui permet de définir les indices des points du triangle dans la liste des points de l'objet
+        """
         self.ids = l
 
     def set_u(self, vecteurs):
+        """fonction qui permet de définir les vecteurs normaux aux côtés du triangle
+        """
         self.u = vecteurs
 
-    def set_adjacent_faces(self, i=1):
+    def set_adjacent_faces(self):
+        """fonction qui permet de définir les faces adjacentes à la face
+        """
         possible_faces = []
         for p in self.x:
             possible_faces.extend([f for f in p.faces if (
