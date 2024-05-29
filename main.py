@@ -1,9 +1,21 @@
+from sys import argv
+
 import polyscope as ps
 
 from recherche.wavefront import load_obj
 from recherche.objet import Objet
 
-name = 'Mesh/bunnyhead'
+Mesh_directory = 'Mesh/'
+
+default_name = 'bunnyhead'
+
+if len(argv) < 2:
+    print("Usage: python main.py <name>")
+    print(f"Default name is {default_name}")
+    name = f"{Mesh_directory}bunnyhead"
+else:
+    name = f"{Mesh_directory}{argv[1]}"
+
 obj_name = name + '.obj'
 
 obj = load_obj(obj_name)
